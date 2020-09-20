@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit page
+{% endblock %}
+
+{% block body %}
+    <h1>Edit page</h1>
+    <br>
+    <p>Please edit below content to update the "{{ title }}" page</p>
+
+    <div class="edit_form">
+        <form method="post">
+            {% csrf_token %}
+
+            <textarea name="content" class="form-control" autocomplete="off" rows="20" style="width: 80%; margin-top: 20px;">
+{{ content }}
+            </textarea>
+
+            <button type="submit" name="save" class="btn btn-primary mb-2" style="margin-top: 20px;">Save page</button>
+        </form>
+    </div>
+
+    {% if flag == "empty" %}
+        <div class="alert alert-dange" role="alert" style="width: 80%; margin-top: 10px;">
+            Content cannot be empty. Please provide input.
+        </div>
+    {% endif %}
+
+{% endblock %}
